@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "age=0": { "model": "tutorialmod:block/vine_plant_leaves" },
+    "age=1": { "model": "tutorialmod:block/vine_plant_leaves_grapes_green" },
+    "age=2": { "model": "tutorialmod:block/vine_plant_leaves_grapes" }
+  }
+}

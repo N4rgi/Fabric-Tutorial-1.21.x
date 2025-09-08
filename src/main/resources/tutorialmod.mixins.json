@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "net.nargi.tutorialmod.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ComposterBlockMixin",
+    "ExampleMixin",
+    "ComposterBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+	}
+}

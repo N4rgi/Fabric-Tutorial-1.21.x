@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "tutorialmod:winemaker_poi",
+      "required": false
+    }
+  ]
+}
