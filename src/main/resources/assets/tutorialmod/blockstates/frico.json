@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "bites=0": { "model": "tutorialmod:block/frico/frico_slice0" },
+    "bites=1": { "model": "tutorialmod:block/frico/frico_slice1" },
+    "bites=2": { "model": "tutorialmod:block/frico/frico_slice2" },
+    "bites=3": { "model": "tutorialmod:block/frico/frico_slice3" }
+  }
+}

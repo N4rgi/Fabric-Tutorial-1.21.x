@@ -11,8 +11,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.nargi.tutorialmod.TutorialMod;
+import net.nargi.tutorialmod.block.custom.frico;
 import net.nargi.tutorialmod.block.custom.vine_plant_leaves;
 import net.nargi.tutorialmod.block.custom.vine_plant;
+import net.nargi.tutorialmod.block.custom.wine_press;
 import net.nargi.tutorialmod.world.tree.ModSaplingGenerators;
 
 public class ModBlocks {
@@ -26,6 +28,13 @@ public class ModBlocks {
     public static final Block VINE_PLANT_SAPLING = registerBlock("vine_plant_sapling",
             new SaplingBlock(ModSaplingGenerators.VINE_PLANT, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING).noCollision()));
 
+    public static final Block WINE_PRESS = registerBlock("wine_press",
+            new wine_press(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+
+
+
+    public static final Block FRICO = registerBlock("frico",
+            new frico(AbstractBlock.Settings.copy(Blocks.CAKE)));
 
 
     private static Block registerBlock(String name, Block block) {
@@ -44,6 +53,7 @@ public class ModBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(fabricItemGroupEntries -> {
             fabricItemGroupEntries.add(ModBlocks.VINE_PLANT_LEAVES);
             fabricItemGroupEntries.add(ModBlocks.VINE_PLANT);
+            fabricItemGroupEntries.add(ModBlocks.VINE_PLANT_SAPLING);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(content -> {
             content.addAfter(Items.FLOWERING_AZALEA_LEAVES, VINE_PLANT_LEAVES);

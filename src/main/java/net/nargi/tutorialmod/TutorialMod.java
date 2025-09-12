@@ -37,15 +37,6 @@ public class TutorialMod implements ModInitializer {
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.VINE_PLANT_LEAVES, 30, 60);
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.VINE_PLANT_LEAVES, 30, 60);
 
-        UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
-            if (entity instanceof IronGolemEntity ironGolemEntity) {
-                if (playerEntity.getMainHandStack().getItem() == ModItems.GRAPES) {
-                    playerEntity.sendMessage(Text.literal("Yes"));
-                }
-            }
-                return ActionResult.SUCCESS;
-        });
-
         // Qui modifichi il composter
         ModComposter.registerComposterChanges();
 	}
