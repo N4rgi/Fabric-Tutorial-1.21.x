@@ -11,7 +11,9 @@ import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.nargi.tutorialmod.block.ModBlocks;
+import net.nargi.tutorialmod.block.entity.ModBlockEntities;
 import net.nargi.tutorialmod.item.ModItems;
+import net.nargi.tutorialmod.screen.ModScreenHandlers;
 import net.nargi.tutorialmod.util.ModComposter;
 import net.nargi.tutorialmod.villager.ModVillagers;
 import net.nargi.tutorialmod.world.gen.ModWorldGeneration;
@@ -29,6 +31,10 @@ public class TutorialMod implements ModInitializer {
         ModBlocks.registerModBlocks(RenderLayer.getCutout());
 
         ModVillagers.registerVillagers();
+
+        ModBlockEntities.registerBlockEntities();
+
+        ModScreenHandlers.registerScreenHandlers();
 
         CompostingChanceRegistry.INSTANCE.add(ModItems.GRAPES, 0.5f);
 

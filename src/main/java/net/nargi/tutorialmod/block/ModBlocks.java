@@ -11,10 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.nargi.tutorialmod.TutorialMod;
-import net.nargi.tutorialmod.block.custom.frico;
-import net.nargi.tutorialmod.block.custom.vine_plant_leaves;
-import net.nargi.tutorialmod.block.custom.vine_plant;
-import net.nargi.tutorialmod.block.custom.wine_press;
+import net.nargi.tutorialmod.block.custom.*;
 import net.nargi.tutorialmod.world.tree.ModSaplingGenerators;
 
 public class ModBlocks {
@@ -30,6 +27,9 @@ public class ModBlocks {
 
     public static final Block WINE_PRESS = registerBlock("wine_press",
             new wine_press(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)));
+
+    public static final Block FERMENTATION_BARREL = registerBlock("fermentation_barrel",
+            new fermentation_barrel(Block.Settings.copy(Blocks.BARREL)));
 
 
 

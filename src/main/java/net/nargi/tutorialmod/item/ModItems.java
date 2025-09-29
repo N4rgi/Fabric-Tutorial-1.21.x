@@ -8,7 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.nargi.tutorialmod.TutorialMod;
 import net.minecraft.registry.Registry;
-import net.nargi.tutorialmod.item.custom.CalibratedEnderPearl;
+import net.nargi.tutorialmod.item.custom.GlassCup;
 
 public class ModItems {
 
@@ -18,14 +18,20 @@ public class ModItems {
     public static final Item GRAPE_SEEDS = registerItem("grape_seeds",
             new Item(new Item.Settings()));
 
-    public static final Item CALIBRATED_ENDER_PEARL = registerItem("calibrated_ender_pearl",
-            new CalibratedEnderPearl(new Item.Settings().maxDamage(100)));
-
     public static final Item GRAPES_MUST = registerItem("grapes_must",
             new Item(new Item.Settings()));
 
     public static final Item GLASS_CUP = registerItem("glass_cup",
-            new Item(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+
+    public static final Item GLASS_CUP1 = registerItem("glass_cup1",
+            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+
+    public static final Item GLASS_CUP2 = registerItem("glass_cup2",
+            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+
+    public static final Item GLASS_CUP3 = registerItem("glass_cup3",
+            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
 
     public static final Item FRICO_SLICE = registerItem("frico_slice",
@@ -45,9 +51,6 @@ public class ModItems {
      });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> {
             content.addAfter(Items.BEETROOT, GRAPES);
-        });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> {
-            content.addAfter(Items.DIAMOND_SWORD, CALIBRATED_ENDER_PEARL);
         });
     }
 }

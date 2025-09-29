@@ -4,7 +4,7 @@
     "parent": "wine_press",
 	"textures": {
 		"4": "tutorialmod:block/wine_press/wine_press_handles",
-		"particle": "tutorialmod:block/wine_press/wine_press_must",
+		"particle": "tutorialmod:block/wine_press/wine_press_side",
 		"inside": "tutorialmod:block/wine_press/wine_press_bottom",
 		"top": "tutorialmod:block/wine_press/wine_press_top",
 		"side": "tutorialmod:block/wine_press/wine_press_side"

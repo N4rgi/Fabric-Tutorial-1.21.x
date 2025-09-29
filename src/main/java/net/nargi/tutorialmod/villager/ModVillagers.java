@@ -17,7 +17,7 @@ import net.nargi.tutorialmod.block.ModBlocks;
 public class ModVillagers {
 
     public static final RegistryKey<PointOfInterestType> WINEMAKER_POI_KEY = registerPoiKey("winemaker_poi");
-    public static final PointOfInterestType WINEMAKER_POI = registerPOI("winemaker_poi", ModBlocks.VINE_PLANT_SAPLING);
+    public static final PointOfInterestType WINEMAKER_POI = registerPOI("winemaker_poi", ModBlocks.FERMENTATION_BARREL);
 
     public static final VillagerProfession WINEMAKER = registerProfession("winemaker", WINEMAKER_POI_KEY);
 
