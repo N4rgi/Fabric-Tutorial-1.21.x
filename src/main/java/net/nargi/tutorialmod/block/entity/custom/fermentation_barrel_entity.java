@@ -1,6 +1,7 @@
 package net.nargi.tutorialmod.block.entity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -16,10 +18,12 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.nargi.tutorialmod.block.custom.fermentation_barrel;
 import net.nargi.tutorialmod.block.entity.ImplementedInventory;
 import net.nargi.tutorialmod.block.entity.ModBlockEntities;
 import net.nargi.tutorialmod.item.ModItems;
@@ -28,14 +32,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class fermentation_barrel_entity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(2, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
 
-    private static final int INPUT_SLOT = 0;
-    private static final int OUTPUT_SLOT = 1;
+    private static final int INPUT_SLOT = 1;
+    private static final int OUTPUT_SLOT = 2;
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 200;
 
     public fermentation_barrel_entity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FERMENTATION_BARREL_BE, pos, state);
@@ -86,7 +90,9 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if(hasRecipe()) {
+        int grapesProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
+//SKIBIDI
+        if(hasRecipe() && grapesProgress < 4) {
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
@@ -101,14 +107,21 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
     private void resetProgress() {
         this.progress = 0;
-        this.maxProgress = 72;
+        this.maxProgress = 200;
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(ModItems.GRAPES_MUST, 1);
+        ItemStack output = new ItemStack(Items.BOWL, 1);
         this.removeStack(INPUT_SLOT, 1);
         this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
                 this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+//SKIBIDI
+        BlockState state = this.getCachedState();
+        if (state.contains(fermentation_barrel.GRAPES_PROGRESS)) {
+            int currentProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
+            int newProgress = Math.min(currentProgress + 1, 4);
+            this.world.setBlockState(this.pos, state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress), Block.NOTIFY_ALL);
+        }
 
     }
 
@@ -123,7 +136,8 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
     private boolean hasRecipe() {
         Item input = ModItems.GRAPES_MUST;
-        ItemStack output = new ItemStack(ModItems.GRAPES, 6);
+        ItemStack output = new ItemStack(Items.BOWL);
+
 
         return  this.getStack(INPUT_SLOT).isOf(input) &&
                 canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
@@ -139,7 +153,6 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
         return maxCount >= currentCount + count;
     }
-
     @Nullable
     @Override
     public Packet<ClientPlayPacketListener> toUpdatePacket() {

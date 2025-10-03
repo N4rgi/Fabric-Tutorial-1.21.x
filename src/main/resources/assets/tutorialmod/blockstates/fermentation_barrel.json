@@ -1,56 +1,39 @@
 {
   "variants": {
-    "facing=down,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel",
-      "x": 180
-    },
-    "facing=down,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full",
-      "x": 180
-    },
-    "facing=east,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel",
-      "x": 90,
-      "y": 90
-    },
-    "facing=east,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full",
-      "x": 90,
-      "y": 90
-    },
-    "facing=north,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel",
-      "x": 90
-    },
-    "facing=north,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full",
-      "x": 90
-    },
-    "facing=south,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel",
-      "x": 90,
-      "y": 180
-    },
-    "facing=south,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full",
-      "x": 90,
-      "y": 180
-    },
-    "facing=up,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel"
-    },
-    "facing=up,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full"
-    },
-    "facing=west,age=0": {
-      "model": "tutorialmod:block/fermentation_barrel",
-      "x": 90,
-      "y": 270
-    },
-    "facing=west,age=1": {
-      "model": "tutorialmod:block/fermentation_barrel_full",
-      "x": 90,
-      "y": 270
-    }
+    "facing=up,grapes_progress=0":  { "model": "tutorialmod:block/fermentation_barrel" },
+    "facing=up,grapes_progress=1":  { "model": "tutorialmod:block/fermentation_barrel" },
+    "facing=up,grapes_progress=2":  { "model": "tutorialmod:block/fermentation_barrel" },
+    "facing=up,grapes_progress=3":  { "model": "tutorialmod:block/fermentation_barrel" },
+    "facing=up,grapes_progress=4":  { "model": "tutorialmod:block/fermentation_barrel_full" },
+
+    "facing=down,grapes_progress=0": { "model": "tutorialmod:block/fermentation_barrel", "x": 180 },
+    "facing=down,grapes_progress=1": { "model": "tutorialmod:block/fermentation_barrel", "x": 180 },
+    "facing=down,grapes_progress=2": { "model": "tutorialmod:block/fermentation_barrel", "x": 180 },
+    "facing=down,grapes_progress=3": { "model": "tutorialmod:block/fermentation_barrel", "x": 180 },
+    "facing=down,grapes_progress=4": { "model": "tutorialmod:block/fermentation_barrel_full", "x": 180 },
+
+    "facing=north,grapes_progress=0": { "model": "tutorialmod:block/fermentation_barrel", "x": 90 },
+    "facing=north,grapes_progress=1": { "model": "tutorialmod:block/fermentation_barrel", "x": 90 },
+    "facing=north,grapes_progress=2": { "model": "tutorialmod:block/fermentation_barrel", "x": 90 },
+    "facing=north,grapes_progress=3": { "model": "tutorialmod:block/fermentation_barrel", "x": 90 },
+    "facing=north,grapes_progress=4": { "model": "tutorialmod:block/fermentation_barrel_full", "x": 90 },
+
+    "facing=south,grapes_progress=0": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 180 },
+    "facing=south,grapes_progress=1": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 180 },
+    "facing=south,grapes_progress=2": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 180 },
+    "facing=south,grapes_progress=3": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 180 },
+    "facing=south,grapes_progress=4": { "model": "tutorialmod:block/fermentation_barrel_full", "x": 90, "y": 180 },
+
+    "facing=east,grapes_progress=0": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 90 },
+    "facing=east,grapes_progress=1": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 90 },
+    "facing=east,grapes_progress=2": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 90 },
+    "facing=east,grapes_progress=3": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 90 },
+    "facing=east,grapes_progress=4": { "model": "tutorialmod:block/fermentation_barrel_full", "x": 90, "y": 90 },
+
+    "facing=west,grapes_progress=0": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 270 },
+    "facing=west,grapes_progress=1": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 270 },
+    "facing=west,grapes_progress=2": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 270 },
+    "facing=west,grapes_progress=3": { "model": "tutorialmod:block/fermentation_barrel", "x": 90, "y": 270 },
+    "facing=west,grapes_progress=4": { "model": "tutorialmod:block/fermentation_barrel_full", "x": 90, "y": 270 }
   }
 }

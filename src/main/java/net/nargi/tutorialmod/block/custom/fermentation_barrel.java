@@ -33,11 +33,14 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     public static final IntProperty LEVEL = IntProperty.of("age", 0, 1);
     public static final IntProperty LEVEL2 = IntProperty.of("age2", 0, 1);
     public static final MapCodec<fermentation_barrel> CODEC = fermentation_barrel.createCodec(fermentation_barrel::new);
+//SKIBIDI
+    public static final IntProperty GRAPES_PROGRESS = IntProperty.of("grapes_progress", 0, 4);
 
     public fermentation_barrel(Settings settings) {
         super(settings);
         this.setDefaultState((BlockState)((BlockState)((BlockState)this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)));
         this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 0));
+        setDefaultState(this.stateManager.getDefaultState().with(GRAPES_PROGRESS, 0));
 
     }
 
@@ -111,6 +114,7 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
         builder.add(new Property[]{FACING});
         builder.add(LEVEL);
         builder.add(LEVEL2);
+        builder.add(GRAPES_PROGRESS);
     }
 
     @Override
@@ -142,32 +146,4 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     static {
         FACING = Properties.FACING;
     }
-
-
-    //@Override
-    //protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
-    //                                         PlayerEntity player, Hand hand, BlockHitResult hit) {
-    //    if(world.getBlockEntity(pos) instanceof fermentation_barrel_entity fermentation_barrel_entity) {
-    //        if(fermentation_barrel_entity.isEmpty() && !stack.isEmpty()) {
-    //            fermentation_barrel_entity.setStack(0, stack.copyWithCount(1));
-    //            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-    //            stack.decrement(1);
-//
-    //            fermentation_barrel_entity.markDirty();
-    //            world.updateListeners(pos, state, state, 0);
-    //        } else if(stack.isEmpty() && !player.isSneaking()) {
-    //            ItemStack fermentationBarrelEntityStack = fermentation_barrel_entity.getStack(0);
-    //            player.setStackInHand(Hand.MAIN_HAND, fermentationBarrelEntityStack);
-    //            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
-    //            fermentation_barrel_entity.clear();
-//
-    //            fermentation_barrel_entity.markDirty();
-    //            world.updateListeners(pos, state, state, 0);
-    //        } else if(player.isSneaking() && !world.isClient()) {
-    //            player.openHandledScreen(fermentation_barrel_entity);
-    //        }
-    //    }
-//
-    //    return ItemActionResult.SUCCESS;
-    //}
 }

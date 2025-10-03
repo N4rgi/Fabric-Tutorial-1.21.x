@@ -19,7 +19,7 @@ public class ModItems {
             new Item(new Item.Settings()));
 
     public static final Item GRAPES_MUST = registerItem("grapes_must",
-            new Item(new Item.Settings()));
+            new Item(new Item.Settings().maxCount(16)));
 
     public static final Item GLASS_CUP = registerItem("glass_cup",
             new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));

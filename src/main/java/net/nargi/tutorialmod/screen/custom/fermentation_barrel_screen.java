@@ -5,6 +5,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.nargi.tutorialmod.TutorialMod;
@@ -14,6 +15,21 @@ public class fermentation_barrel_screen extends HandledScreen<fermentation_barre
             Identifier.of(TutorialMod.MOD_ID, "textures/gui/fermentation_barrel/fermentation_barrel_gui.png");
     public static final Identifier BUBBLES_TEXTURE =
             Identifier.of(TutorialMod.MOD_ID, "textures/gui/bubbles_progress.png");
+    public static final Identifier ARROW_TEXTURE =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/arrow_progress.png");
+    public static final Identifier GRAPES_PROGRESS_1 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_1.png");
+    public static final Identifier GRAPES_PROGRESS_2 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_2.png");
+    public static final Identifier GRAPES_PROGRESS_3 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_3.png");
+    public static final Identifier GRAPES_PROGRESS_4 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_4.png");
+
+
+
+    private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 12, 16, 20, 24, 26};
+
 
     public fermentation_barrel_screen(fermentation_barrel_screen_handler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -30,13 +46,47 @@ public class fermentation_barrel_screen extends HandledScreen<fermentation_barre
 
         context.drawTexture(GUI_TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
+        int grapesProgress = handler.getGrapesProgress();
+
+        if (grapesProgress == 1) {
+
+            context.drawTexture(GRAPES_PROGRESS_1, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 2) {
+
+            context.drawTexture(GRAPES_PROGRESS_2, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 3) {
+
+            context.drawTexture(GRAPES_PROGRESS_3, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 4) {
+
+            context.drawTexture(GRAPES_PROGRESS_4, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        }
+
+
         renderProgressArrow(context, x ,y);
+
+        int i = (this.width - this.backgroundWidth) / 2;
+        int j = (this.height - this.backgroundHeight) / 2;
+        int m = ((fermentation_barrel_screen_handler)this.handler).getBubbleOn();
+
+        int n = BUBBLE_PROGRESS[m / 2 % 7];
+        if (n > 0) {
+            context.drawTexture(
+                    BUBBLES_TEXTURE,
+                    i + 75, j + 22,0, 0, n, 16, 25, 16
+            );
+        }
+
     }
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(BUBBLES_TEXTURE, x + 103, y + 34, 0, 0,
-                    handler.getScaledArrowProgress(), 16, 24, 16);
+            context.drawTexture(ARROW_TEXTURE, x + 76, y + 39, 0, 0,
+                    handler.getScaledArrowProgress(), 8, 26, 8);
         }
     }
 

@@ -10,7 +10,9 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
+import net.nargi.tutorialmod.block.custom.fermentation_barrel;
 import net.nargi.tutorialmod.block.entity.custom.fermentation_barrel_entity;
 import net.nargi.tutorialmod.screen.ModScreenHandlers;
 import org.jetbrains.annotations.Nullable;
@@ -31,8 +33,9 @@ public class fermentation_barrel_screen_handler extends ScreenHandler {
         this.blockEntity = ((fermentation_barrel_entity) blockEntity);
         this.propertyDelegate = arrayPropertyDelegate;
 
-        this.addSlot(new Slot(inventory, 0, 58, 34));
-        this.addSlot(new Slot(inventory, 1, 142, 34));
+        this.addSlot(new Slot(inventory, 1, 18, 34)); // must and bottle
+        this.addSlot(new Slot(inventory, 0, 48, 34)); // etiquette
+        this.addSlot(new Slot(inventory, 2, 124, 34));// output
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -44,10 +47,14 @@ public class fermentation_barrel_screen_handler extends ScreenHandler {
         return propertyDelegate.get(0) > 0;
     }
 
+    public int getBubbleOn() {
+        return this.propertyDelegate.get(0);
+    }
+
     public int getScaledArrowProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);
-        int arrowPixelSize = 24;
+        int arrowPixelSize = 26;
 
         return maxProgress != 0 && progress != 0 ? progress * arrowPixelSize / maxProgress : 0;
     }
@@ -67,6 +74,10 @@ public class fermentation_barrel_screen_handler extends ScreenHandler {
                     8 + col * 18, 142));
         }
     }
+    public int getGrapesProgress() {
+        return blockEntity.getCachedState().get(fermentation_barrel.GRAPES_PROGRESS);
+    }
+
     //Shift Left-Click
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
