@@ -33,8 +33,8 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     public static final IntProperty LEVEL = IntProperty.of("age", 0, 1);
     public static final IntProperty LEVEL2 = IntProperty.of("age2", 0, 1);
     public static final MapCodec<fermentation_barrel> CODEC = fermentation_barrel.createCodec(fermentation_barrel::new);
-//SKIBIDI
-    public static final IntProperty GRAPES_PROGRESS = IntProperty.of("grapes_progress", 0, 4);
+
+    public static final IntProperty GRAPES_PROGRESS = IntProperty.of("grapes_progress", 0, 8);
 
     public fermentation_barrel(Settings settings) {
         super(settings);
@@ -97,6 +97,8 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
                 (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
+
+
     //Rotation
 
     @Override
@@ -121,13 +123,6 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         return (BlockState)this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
     }
-
-    //Other
-   //@Override
-   //public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-
-   //}
-
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {

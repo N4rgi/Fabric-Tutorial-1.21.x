@@ -3,9 +3,7 @@
   "package": "net.nargi.tutorialmod.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ComposterBlockMixin",
-    "ExampleMixin",
-    "ComposterBlockMixin"
+    "ExampleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

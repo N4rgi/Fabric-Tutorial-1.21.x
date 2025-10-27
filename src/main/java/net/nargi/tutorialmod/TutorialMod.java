@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.nargi.tutorialmod.block.ModBlocks;
 import net.nargi.tutorialmod.block.entity.ModBlockEntities;
+import net.nargi.tutorialmod.effect.ModEffects;
 import net.nargi.tutorialmod.item.ModItems;
 import net.nargi.tutorialmod.screen.ModScreenHandlers;
 import net.nargi.tutorialmod.util.ModComposter;
@@ -43,7 +44,6 @@ public class TutorialMod implements ModInitializer {
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.VINE_PLANT_LEAVES, 30, 60);
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.VINE_PLANT_LEAVES, 30, 60);
 
-        // Qui modifichi il composter
-        ModComposter.registerComposterChanges();
+        ModEffects.registerEffects();
 	}
 }

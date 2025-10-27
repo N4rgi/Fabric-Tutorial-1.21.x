@@ -91,8 +91,8 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
     public void tick(World world, BlockPos pos, BlockState state) {
         int grapesProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
-//SKIBIDI
-        if(hasRecipe() && grapesProgress < 4) {
+
+        if(hasRecipe() && grapesProgress < 8) {
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
@@ -115,11 +115,11 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
         this.removeStack(INPUT_SLOT, 1);
         this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
                 this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
-//SKIBIDI
+
         BlockState state = this.getCachedState();
         if (state.contains(fermentation_barrel.GRAPES_PROGRESS)) {
             int currentProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
-            int newProgress = Math.min(currentProgress + 1, 4);
+            int newProgress = Math.min(currentProgress + 1, 8);
             this.world.setBlockState(this.pos, state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress), Block.NOTIFY_ALL);
         }
 

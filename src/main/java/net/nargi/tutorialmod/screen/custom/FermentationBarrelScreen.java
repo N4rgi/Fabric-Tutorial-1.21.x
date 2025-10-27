@@ -5,12 +5,11 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.nargi.tutorialmod.TutorialMod;
 
-public class fermentation_barrel_screen extends HandledScreen<fermentation_barrel_screen_handler> {
+public class FermentationBarrelScreen extends HandledScreen<fermentation_barrel_screen_handler> {
     public static final Identifier GUI_TEXTURE =
             Identifier.of(TutorialMod.MOD_ID, "textures/gui/fermentation_barrel/fermentation_barrel_gui.png");
     public static final Identifier BUBBLES_TEXTURE =
@@ -25,13 +24,21 @@ public class fermentation_barrel_screen extends HandledScreen<fermentation_barre
             Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_3.png");
     public static final Identifier GRAPES_PROGRESS_4 =
             Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_4.png");
+    public static final Identifier GRAPES_PROGRESS_5 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_5.png");
+    public static final Identifier GRAPES_PROGRESS_6 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_6.png");
+    public static final Identifier GRAPES_PROGRESS_7 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_7.png");
+    public static final Identifier GRAPES_PROGRESS_8 =
+            Identifier.of(TutorialMod.MOD_ID, "textures/gui/grapes_progress_8.png");
 
 
 
     private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 12, 16, 20, 24, 26};
 
 
-    public fermentation_barrel_screen(fermentation_barrel_screen_handler handler, PlayerInventory inventory, Text title) {
+    public FermentationBarrelScreen(fermentation_barrel_screen_handler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 
@@ -63,6 +70,22 @@ public class fermentation_barrel_screen extends HandledScreen<fermentation_barre
         } else if (grapesProgress == 4) {
 
             context.drawTexture(GRAPES_PROGRESS_4, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 5) {
+
+            context.drawTexture(GRAPES_PROGRESS_5, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 6) {
+
+            context.drawTexture(GRAPES_PROGRESS_6, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 7) {
+
+            context.drawTexture(GRAPES_PROGRESS_7, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
+
+        } else if (grapesProgress == 8) {
+
+            context.drawTexture(GRAPES_PROGRESS_8, x + 114, y + 28, 0, 0,  36, 30, 36, 30);
 
         }
 
