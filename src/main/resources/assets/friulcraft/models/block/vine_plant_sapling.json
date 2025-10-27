@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "friulcraft:block/vine_plant_sapling"
+  }
+}

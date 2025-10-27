@@ -1,0 +1,11 @@
+{
+  "item.friulcraft.grapes": "Grapes",
+  "item.friulcraft.grape_seeds": "Grape seeds",
+
+
+  "block.friulcraft.vine_plant_sapling": "Vine Plant Sapling",
+  "block.friulcraft.vine_plant_leaves": "Vine Plant Leaves",
+  "block.friulcraft.vine_plant": "Grape Vines",
+
+  "entity.minecraft.villager.friulcraft.winemaker": "Winemaker"
+}

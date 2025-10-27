@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "bites=0": { "model": "friulcraft:block/frico/frico_slice0" },
+    "bites=1": { "model": "friulcraft:block/frico/frico_slice1" },
+    "bites=2": { "model": "friulcraft:block/frico/frico_slice2" },
+    "bites=3": { "model": "friulcraft:block/frico/frico_slice3" }
+  }
+}

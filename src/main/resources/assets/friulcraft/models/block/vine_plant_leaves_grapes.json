@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "friulcraft:block/vine_plant_leaves_grapes"
+  }
+}

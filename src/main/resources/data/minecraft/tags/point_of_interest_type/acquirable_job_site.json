@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     {
-      "id": "tutorialmod:winemaker_poi",
+      "id": "friulcraft:winemaker_poi",
       "required": false
     }
   ]

@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "tutorialmod",
+	"id": "friulcraft",
 	"version": "${version}",
-	"name": "Tutorial Mod",
-	"description": "Tutorial Mod Nargi",
+	"name": "Friul Craft",
+	"description": "Friul Craft Nargi",
 	"authors": [
 		"Me!"
 	],
@@ -16,17 +16,17 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.nargi.tutorialmod.TutorialMod"
+			"net.nargi.friulcraft.FriulCraftMod"
 		],
 		"fabric-datagen": [
-			"net.nargi.tutorialmod.TutorialModDataGenerator"
+			"net.nargi.friulcraft.FriulCraftModDataGenerator"
 		],
         "client": [
-          "net.nargi.tutorialmod.TutorialModClient"
+          "net.nargi.friulcraft.FriulCraftModClient"
         ]
 	},
 	"mixins": [
-		"tutorialmod.mixins.json"
+		"friulcraft.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",
