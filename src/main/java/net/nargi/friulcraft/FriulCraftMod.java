@@ -39,5 +39,7 @@ public class FriulCraftMod implements ModInitializer {
         FlammableBlockRegistry.getDefaultInstance().add(ModBlocks.VINE_PLANT_LEAVES, 30, 60);
 
         ModEffects.registerEffects();
-	}
+
+
+    }
 }
