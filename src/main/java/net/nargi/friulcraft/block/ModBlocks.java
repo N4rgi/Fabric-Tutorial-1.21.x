@@ -17,7 +17,7 @@ import net.nargi.friulcraft.world.tree.ModSaplingGenerators;
 public class ModBlocks {
 
     public static final Block VINE_PLANT_LEAVES = registerBlock("vine_plant_leaves",
-            new vine_plant_leaves(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)));
+            new vine_plant_leaves(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).ticksRandomly()));
 
     public static final Block VINE_PLANT = registerBlock("vine_plant",
             new vine_plant(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).noCollision()));
@@ -30,8 +30,6 @@ public class ModBlocks {
 
     public static final Block FERMENTATION_BARREL = registerBlock("fermentation_barrel",
             new fermentation_barrel(Block.Settings.copy(Blocks.BARREL)));
-
-
 
     public static final Block FRICO = registerBlock("frico",
             new frico(AbstractBlock.Settings.copy(Blocks.CAKE)));

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.nargi.friulcraft.datagen.ModBlockTagProvider;
+import net.nargi.friulcraft.datagen.ModLootTableProvider;
 import net.nargi.friulcraft.datagen.ModRegistryDataGenerator;
 import net.nargi.friulcraft.world.ModConfiguredFeatures;
 import net.nargi.friulcraft.world.ModPlacedFeatures;
@@ -15,6 +16,7 @@ public class FriulCraftModDataGenerator implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(ModBlockTagProvider::new);
+        pack.addProvider(ModLootTableProvider::new);
         pack.addProvider(ModRegistryDataGenerator::new);
 	}
 

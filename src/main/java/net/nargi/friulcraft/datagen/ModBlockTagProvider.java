@@ -15,6 +15,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+
         getOrCreateTagBuilder(BlockTags.LEAVES)
                 .add(ModBlocks.VINE_PLANT)
                 .add(ModBlocks.VINE_PLANT_LEAVES);
