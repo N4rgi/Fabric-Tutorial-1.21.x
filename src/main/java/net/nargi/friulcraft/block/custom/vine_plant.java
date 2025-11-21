@@ -2,21 +2,26 @@ package net.nargi.friulcraft.block.custom;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShearsItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.nargi.friulcraft.block.ModBlocks;
 import net.nargi.friulcraft.item.ModItems;
 
 public class vine_plant extends Block {
@@ -73,6 +78,37 @@ public class vine_plant extends Block {
         if (!world.getBlockState(pos.up()).isSolidBlock(world, pos.up())) {
             dropStacks(state, world, pos);
             world.removeBlock(pos, false);
+        }
+    }
+
+    @Override
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
+                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        // Check if the block ABOVE changed
+        if (direction == Direction.UP) {
+            // If the block above is NOT your required support block → break
+            if (!world.getBlockState(pos.up()).isOf(ModBlocks.VINE_PLANT_LEAVES)) {
+                return Blocks.AIR.getDefaultState(); // block self-destructs
+            }
+        }
+
+        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+    }
+
+    @Override
+    public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool, boolean dropExperience) {
+        super.onStacksDropped(state, world, pos, tool, dropExperience);
+
+        int age = state.get(AGE);
+
+        if (!world.isClient && age == 2) {
+            int i = 1 + world.getRandom().nextInt(2);
+
+            ItemStack drop = new ItemStack(ModItems.GRAPES, i);
+            ItemEntity entity = new ItemEntity(world,
+                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                    drop);
+            world.spawnEntity(entity);
         }
     }
 

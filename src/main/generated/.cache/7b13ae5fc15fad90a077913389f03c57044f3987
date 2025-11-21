@@ -1,5 +1,6 @@
-// 1.21	2025-11-18T23:12:50.0647358	Friul Craft/Block Loot Tables
+// 1.21	2025-11-19T15:35:55.2675467	Friul Craft/Block Loot Tables
 5b34410dbfce12d742b5ef355cfe47b28a67c145 data\friulcraft\loot_table\blocks\vine_plant_leaves.json
+4d0b527aa2b9813cc93874ef88d46a6fb483e709 data\friulcraft\loot_table\blocks\vine_plant.json
 7a1696bab380f3a9cc6edfed910937401c17dd3a data\friulcraft\loot_table\blocks\fermentation_barrel.json
 a40ff429db719acfb22c75d1acdb85c3def1d059 data\friulcraft\loot_table\blocks\vine_plant_sapling.json
 1743af3b0838b85708cf30123da454f497b31b61 data\friulcraft\loot_table\blocks\wine_press.json

@@ -77,8 +77,23 @@ public class vine_plant_leaves extends Block implements Waterloggable {
 
         // --- decay: no log nearby ---
         if (!found_log && persistent == false) {
+            //REMOVE BLOCK
             world.removeBlock(pos, false);
 
+
+            //DROP GRAPES IF AGE == 2
+            if (!world.isClient && age == 2) {
+                int i = 1 + world.getRandom().nextInt(2);
+
+                ItemStack drop = new ItemStack(ModItems.GRAPES, i);
+                ItemEntity entity = new ItemEntity(world,
+                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        drop);
+                world.spawnEntity(entity);
+            }
+
+
+            //DROP WINE PLANT SAPLING
         if (world.random.nextFloat() < 0.0625f) {
             ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                     new ItemStack(ModBlocks.VINE_PLANT_SAPLING));
@@ -152,6 +167,7 @@ public class vine_plant_leaves extends Block implements Waterloggable {
     public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack tool, boolean dropExperience) {
         super.onStacksDropped(state, world, pos, tool, dropExperience);
 
+        int age = state.get(AGE);
 
         if (!(tool.getItem() instanceof ShearsItem)) {
             if (world.random.nextFloat() < 0.0625f) {
@@ -159,6 +175,16 @@ public class vine_plant_leaves extends Block implements Waterloggable {
                         new ItemStack(ModBlocks.VINE_PLANT_SAPLING));
                 world.spawnEntity(entity);
             }
+        }
+
+        if (!world.isClient && age == 2) {
+            int i = 1 + world.getRandom().nextInt(2);
+
+            ItemStack drop = new ItemStack(ModItems.GRAPES, i);
+            ItemEntity entity = new ItemEntity(world,
+                    pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                    drop);
+            world.spawnEntity(entity);
         }
     }
 
