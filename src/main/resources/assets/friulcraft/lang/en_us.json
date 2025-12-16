@@ -1,11 +1,16 @@
 {
   "item.friulcraft.grapes": "Grapes",
   "item.friulcraft.grape_seeds": "Grape seeds",
+  "item.friulcraft.wine_bottle": "Wine Bottle",
+  "item.friulcraft.etiquette": "Etiquette",
 
 
   "block.friulcraft.vine_plant_sapling": "Vine Plant Sapling",
   "block.friulcraft.vine_plant_leaves": "Vine Plant Leaves",
   "block.friulcraft.vine_plant": "Grape Vines",
 
-  "entity.minecraft.villager.friulcraft.winemaker": "Winemaker"
+  "entity.minecraft.villager.friulcraft.winemaker": "Winemaker",
+
+  "tooltip.friulcraft.wine_bottle_name.tooltip": "Merlot Wine",
+  "tooltip.friulcraft.wine_bottle_description.tooltip": "Description for this tasty wine bottle"
 }

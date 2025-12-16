@@ -9,6 +9,8 @@ import net.minecraft.util.Identifier;
 import net.nargi.friulcraft.FriulCraftMod;
 import net.minecraft.registry.Registry;
 import net.nargi.friulcraft.item.custom.GlassCup;
+import net.nargi.friulcraft.item.custom.WineBottle;
+import net.nargi.friulcraft.item.custom.Etiquette;
 
 public class ModItems {
 
@@ -18,14 +20,28 @@ public class ModItems {
     public static final Item GRAPES_MUST = registerItem("grapes_must",
             new Item(new Item.Settings().maxCount(16).food(ModFoodComponents.GRAPES_MUST)));
 
-    public static final Item GLASS_CUP = registerItem("glass_cup",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
-
     public static final Item FRICO_SLICE = registerItem("frico_slice",
             new Item(new Item.Settings().food(ModFoodComponents.FRICO_SLICE)));
 
+
+
+    public static final Item EMPTY_WINE_GLASS = registerItem("empty_wine_glass",
+            new Item(new Item.Settings().maxCount(16)));
+
+    public static final Item WINE_GLASS = registerItem("wine_glass",
+            new GlassCup(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
+
+    public static final Item EMPTY_WINE_BOTTLE = registerItem("empty_wine_bottle",
+            new Item(new Item.Settings().maxCount(16)));
+
+    public static final Item WINE_BOTTLE = registerItem("wine_bottle",
+            new WineBottle(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
+
+
+
+
     public static final Item ETIQUETTE = registerItem("etiquette",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new Etiquette(new Item.Settings()));
 
     public static final Item ETIQUETTE_RED = registerItem("etiquette_red",
             new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
@@ -85,7 +101,10 @@ public class ModItems {
 
      ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(fabricItemGroupEntries -> {
          fabricItemGroupEntries.add(GRAPES);
-         fabricItemGroupEntries.add(GLASS_CUP);
+         fabricItemGroupEntries.add(EMPTY_WINE_GLASS);
+         fabricItemGroupEntries.add(WINE_GLASS);
+         fabricItemGroupEntries.add(EMPTY_WINE_BOTTLE);
+         fabricItemGroupEntries.add(WINE_BOTTLE);
      });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> {
             content.addAfter(Items.BEETROOT, GRAPES);

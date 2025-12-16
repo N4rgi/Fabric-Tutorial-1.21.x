@@ -66,7 +66,7 @@ public class vine_plant_leaves extends Block implements Waterloggable {
 
                     if (world.getBlockState(checkPos).isIn(BlockTags.LOGS)) {
                         found_log = true;
-                        dx = dy = dz = 999;  // break all loops quickly
+                        dx = dy = dz = 999;
                         break;
                     }
                 }
@@ -75,13 +75,10 @@ public class vine_plant_leaves extends Block implements Waterloggable {
 
         int newDist = found_log ? 1 : 0;
 
-        // --- decay: no log nearby ---
         if (!found_log && persistent == false) {
             //REMOVE BLOCK
             world.removeBlock(pos, false);
 
-
-            //DROP GRAPES IF AGE == 2
             if (!world.isClient && age == 2) {
                 int i = 1 + world.getRandom().nextInt(2);
 
@@ -92,8 +89,6 @@ public class vine_plant_leaves extends Block implements Waterloggable {
                 world.spawnEntity(entity);
             }
 
-
-            //DROP WINE PLANT SAPLING
         if (world.random.nextFloat() < 0.0625f) {
             ItemEntity entity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                     new ItemStack(ModBlocks.VINE_PLANT_SAPLING));
@@ -103,12 +98,10 @@ public class vine_plant_leaves extends Block implements Waterloggable {
         return;
         }
 
-        // --- growth ---
         if (age < 2 && random.nextInt(10) == 0) {
             age++;
         }
 
-        // --- apply all updates together ---
         BlockState newState = state
                 .with(AGE, age)
                 .with(DISTANCE, newDist);
@@ -189,9 +182,6 @@ public class vine_plant_leaves extends Block implements Waterloggable {
     }
 
 
-
-    // EXPLANATION:
-    // Returns water or not-water based on WATERLOGGED property
     protected FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED)
                 ? Fluids.WATER.getStill(false)
@@ -206,7 +196,6 @@ public class vine_plant_leaves extends Block implements Waterloggable {
             BlockPos pos,
             BlockPos neighborPos
     ) {
-        // If waterlogged, update water behavior
         if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
@@ -224,8 +213,6 @@ public class vine_plant_leaves extends Block implements Waterloggable {
                 .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER); // Waterlog if underwater
     }
 
-    // EXPLANATION:
-    // Static initializer for properties
     static {
         WATERLOGGED = Properties.WATERLOGGED;
     }

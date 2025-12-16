@@ -3,12 +3,17 @@
   "package": "net.nargi.friulcraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ExampleMixin"
+    "ExampleMixin",
+    "PlayerEntityMixin",
+    "iron_golem.IronGolemEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  },
+  "client": [
+    "iron_golem.IronGolemEntityRendererMixin"
+  ]
 }

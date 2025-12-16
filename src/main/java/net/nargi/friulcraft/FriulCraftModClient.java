@@ -3,6 +3,7 @@ package net.nargi.friulcraft;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.PostEffectProcessor;
@@ -13,6 +14,8 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.nargi.friulcraft.block.ModBlocks;
 import net.nargi.friulcraft.effect.ModEffects;
+import net.nargi.friulcraft.particle.DripFermentation;
+import net.nargi.friulcraft.particle.ModParticles;
 import net.nargi.friulcraft.screen.ModScreenHandlers;
 import net.nargi.friulcraft.screen.custom.FermentationBarrelScreen;
 
@@ -61,6 +64,8 @@ public class FriulCraftModClient implements ClientModInitializer {
                 shaderEffect.setupDimensions(window.getFramebufferWidth(), window.getFramebufferHeight());
             }
         });
+
+        ParticleFactoryRegistry.getInstance().register(ModParticles.DRIP_WINE, DripFermentation.Factory::new);
     }
 
     private void loadShader(MinecraftClient client) {

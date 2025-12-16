@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "friulcraft:item/wine_bottle"
+    "layer0": "friulcraft:item/empty_wine_bottle"
   }
 }

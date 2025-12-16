@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "friulcraft:wine_bottle"
+    },
+    {
+      "item": "friulcraft:etiquette"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "friulcraft:wine_bottle"
+  }
+}
