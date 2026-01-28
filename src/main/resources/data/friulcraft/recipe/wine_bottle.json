@@ -1,0 +1,9 @@
+{
+  "type": "friulcraft:fermentation_barrel",
+  "ingredient": {
+    "item": "friulcraft:empty_wine_bottle"
+  },
+  "result": {
+    "id": "friulcraft:wine_bottle"
+  }
+}

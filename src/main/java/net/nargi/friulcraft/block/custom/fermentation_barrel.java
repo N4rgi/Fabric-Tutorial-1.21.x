@@ -148,12 +148,15 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         super.randomDisplayTick(state, world, pos, random);
+        int i = state.get(GRAPES_PROGRESS);
         if (random.nextInt(5) == 0) {
             BlockPos blockPos = pos.down();
             BlockState blockState = world.getBlockState(blockPos);
             if (!isFaceFullSquare(blockState.getCollisionShape(world, blockPos), Direction.UP)) {
-                world.addParticle(ModParticles.DRIP_WINE, pos.getX() + 0.5, pos.getY() + -0.1,
-                        pos.getZ() + 0.5, 0, -0.1, 0);
+                if (i >= 4) {
+                    world.addParticle(ModParticles.DRIP_WINE, pos.getX() + 0.5, pos.getY() + -0.1,
+                            pos.getZ() + 0.5, 0, -0.1, 0);
+                }
             }
         }
     }

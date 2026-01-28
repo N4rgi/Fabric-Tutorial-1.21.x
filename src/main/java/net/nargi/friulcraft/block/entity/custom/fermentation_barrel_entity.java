@@ -14,6 +14,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -26,8 +27,13 @@ import net.nargi.friulcraft.block.custom.fermentation_barrel;
 import net.nargi.friulcraft.block.entity.ImplementedInventory;
 import net.nargi.friulcraft.block.entity.ModBlockEntities;
 import net.nargi.friulcraft.item.ModItems;
+import net.nargi.friulcraft.recipe.FermentationBarrelRecipes;
+import net.nargi.friulcraft.recipe.FermentationBarrelRecipesInput;
+import net.nargi.friulcraft.recipe.ModRecipes;
 import net.nargi.friulcraft.screen.custom.fermentation_barrel_screen_handler;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class fermentation_barrel_entity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
 
@@ -35,6 +41,8 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
     private static final int INPUT_SLOT = 1;
     private static final int OUTPUT_SLOT = 2;
+    private ItemStack lastInput = ItemStack.EMPTY;
+
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
@@ -89,9 +97,26 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
+        ItemStack currentInput = getStack(INPUT_SLOT);
+
+        if (!ItemStack.areItemsEqual(currentInput, lastInput)) {
+            resetProgress();
+            lastInput = currentInput.copy();
+            markDirty(world, pos, state);
+            return;
+        }
+
         int grapesProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
 
-        if(hasRecipe() && grapesProgress < 8) {
+        if(hasRecipe() && grapesProgress < 8 && getStack(INPUT_SLOT).isOf(ModItems.GRAPES_MUST)) {
+            increaseCraftingProgress();
+            markDirty(world, pos, state);
+
+            if (hasCraftingFinished()) {
+                craftItem();
+                resetProgress();
+            }
+        } else if (hasRecipe() && getStack(INPUT_SLOT).isOf(ModItems.EMPTY_WINE_BOTTLE) && grapesProgress <= 8 && grapesProgress >=4) {
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
@@ -110,18 +135,37 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
     }
 
     private void craftItem() {
-        ItemStack output = new ItemStack(Items.BOWL, 1);
+        Optional<RecipeEntry<FermentationBarrelRecipes>> recipe = getCurrentRecipe();
+        if (recipe.isEmpty()) return;
+
+        ItemStack inputStack = getStack(INPUT_SLOT).copy();
+        ItemStack output = recipe.get().value().output();
+
         this.removeStack(INPUT_SLOT, 1);
-        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+        this.setStack(OUTPUT_SLOT, new ItemStack(
+                output.getItem(),
+                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()
+        ));
 
         BlockState state = this.getCachedState();
+
         if (state.contains(fermentation_barrel.GRAPES_PROGRESS)) {
             int currentProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
-            int newProgress = Math.min(currentProgress + 1, 8);
-            this.world.setBlockState(this.pos, state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress), Block.NOTIFY_ALL);
-        }
 
+            if (inputStack.isOf(ModItems.GRAPES_MUST)) {
+                int newProgress = Math.min(currentProgress + 1, 8);
+                this.world.setBlockState(this.pos,
+                        state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress),
+                        Block.NOTIFY_ALL);
+            }
+
+            if (inputStack.isOf(ModItems.EMPTY_WINE_BOTTLE)) {
+                int newProgress = Math.max(currentProgress - 4, 0);
+                this.world.setBlockState(this.pos,
+                        state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress),
+                        Block.NOTIFY_ALL);
+            }
+        }
     }
 
     private boolean hasCraftingFinished() {
@@ -134,12 +178,18 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
 
 
     private boolean hasRecipe() {
-        Item input = ModItems.GRAPES_MUST;
-        ItemStack output = new ItemStack(Items.BOWL);
+        Optional<RecipeEntry<FermentationBarrelRecipes>> recipe = getCurrentRecipe();
+        if(recipe.isEmpty()) {
+            return false;
+        }
 
+        ItemStack output = recipe.get().value().output();
+        return canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    }
 
-        return  this.getStack(INPUT_SLOT).isOf(input) &&
-                canInsertAmountIntoOutputSlot(output.getCount()) && canInsertItemIntoOutputSlot(output);
+    private Optional<RecipeEntry<FermentationBarrelRecipes>> getCurrentRecipe() {
+        return this.getWorld().getRecipeManager()
+                .getFirstMatch(ModRecipes.FERMENTATION_BARREL_RECIPES_RECIPE_TYPE, new FermentationBarrelRecipesInput(inventory.get(INPUT_SLOT)), this.getWorld());
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack output) {

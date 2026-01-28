@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "friulcraft:frico"
+        }
+    ],
+    "result": {
+        "id": "friulcraft:frico_slice",
+        "count": 4
+    }
+}

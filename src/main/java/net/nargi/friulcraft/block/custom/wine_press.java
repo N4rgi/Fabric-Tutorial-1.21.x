@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
@@ -43,28 +44,28 @@ public class wine_press extends Block {
         builder.add(LEVEL);
     }
 
-    @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        if (world.isClient) return;
-        if (!(entity instanceof PlayerEntity)) return;
+   //@Override
+   //public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+   //    if (world.isClient) return;
+   //    if (!(entity instanceof PlayerEntity)) return;
 
-        var box = entity.getBoundingBox();
+   //    var box = entity.getBoundingBox();
 
-        var trigger = MUST_SHAPE.offset(pos.getX(), pos.getY(), pos.getZ());
+   //    var trigger = MUST_SHAPE.offset(pos.getX(), pos.getY(), pos.getZ());
 
-        if (!trigger.getBoundingBox().intersects(entity.getBoundingBox())) {
-            return;
-        }
+   //    if (!trigger.getBoundingBox().intersects(entity.getBoundingBox())) {
+   //        return;
+   //    }
 
-        int i = state.get(LEVEL);
+   //    int i = state.get(LEVEL);
 
-        if (i < 5) {
-        int next = (i + 1);
-        world.setBlockState(pos, state.with(LEVEL, i + 1), Block.NOTIFY_ALL);
-        }
+   //    if (i < 5) {
+   //    int next = (i + 1);
+   //    world.setBlockState(pos, state.with(LEVEL, i + 1), Block.NOTIFY_ALL);
+   //    }
 
-        super.onLandedUpon(world, state, pos, entity, fallDistance);
-    }
+   //    super.onLandedUpon(world, state, pos, entity, fallDistance);
+   //}
 
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
@@ -79,12 +80,13 @@ public class wine_press extends Block {
             return ActionResult.SUCCESS;
         }
 
-        if (i == 5) {
+        if (i == 5 && heldItem.isOf(Items.BOWL)) {
             ItemStack drop = new ItemStack(ModItems.GRAPES_MUST, 1);
             ItemEntity entity = new ItemEntity(world,
                     pos.getX() + 0.5, pos.getY() + 0.3, pos.getZ() + 0.5,
                     drop);
             world.spawnEntity(entity);
+            heldItem.decrement(1);
             world.setBlockState(pos, state.with(LEVEL, 0), Block.NOTIFY_ALL);
 
             return ActionResult.SUCCESS;

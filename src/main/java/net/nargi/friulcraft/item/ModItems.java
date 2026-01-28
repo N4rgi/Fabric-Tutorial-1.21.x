@@ -8,9 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.nargi.friulcraft.FriulCraftMod;
 import net.minecraft.registry.Registry;
-import net.nargi.friulcraft.item.custom.GlassCup;
-import net.nargi.friulcraft.item.custom.WineBottle;
-import net.nargi.friulcraft.item.custom.Etiquette;
+import net.nargi.friulcraft.item.custom.*;
 
 public class ModItems {
 
@@ -26,10 +24,13 @@ public class ModItems {
 
 
     public static final Item EMPTY_WINE_GLASS = registerItem("empty_wine_glass",
-            new Item(new Item.Settings().maxCount(16)));
+            new EmptyGlassCup(new Item.Settings().maxCount(16)));
 
     public static final Item WINE_GLASS = registerItem("wine_glass",
-            new GlassCup(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
+
+    public static final Item WATER_GLASS = registerItem("water_glass",
+            new WaterGlass(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item EMPTY_WINE_BOTTLE = registerItem("empty_wine_bottle",
             new Item(new Item.Settings().maxCount(16)));
@@ -44,52 +45,52 @@ public class ModItems {
             new Etiquette(new Item.Settings()));
 
     public static final Item ETIQUETTE_RED = registerItem("etiquette_red",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_ORANGE = registerItem("etiquette_orange",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_YELLOW = registerItem("etiquette_yellow",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_LIME = registerItem("etiquette_lime",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_GREEN = registerItem("etiquette_green",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_CYAN = registerItem("etiquette_cyan",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_LIGHT_BLUE = registerItem("etiquette_light_blue",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_BLUE = registerItem("etiquette_blue",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_PURPLE = registerItem("etiquette_purple",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_MAGENTA = registerItem("etiquette_magenta",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_PINK = registerItem("etiquette_pink",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_WHITE = registerItem("etiquette_white",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_LIGHT_GRAY = registerItem("etiquette_light_gray",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_GRAY = registerItem("etiquette_gray",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_BLACK = registerItem("etiquette_black",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
     public static final Item ETIQUETTE_BROWN = registerItem("etiquette_brown",
-            new GlassCup(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
+            new WineGlass(new Item.Settings().food(ModFoodComponents.GLASS_CUP)));
 
 
     private static Item registerItem(String name, Item item) {

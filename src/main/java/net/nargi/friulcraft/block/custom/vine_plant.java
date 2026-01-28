@@ -1,16 +1,17 @@
 package net.nargi.friulcraft.block.custom;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -21,21 +22,29 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import net.nargi.friulcraft.block.ModBlocks;
 import net.nargi.friulcraft.item.ModItems;
 
-public class vine_plant extends Block {
+public class vine_plant extends Block implements Waterloggable {
     public static final IntProperty AGE = IntProperty.of("age", 0, 2);
     private static final VoxelShape SHAPE = VoxelShapes.union(
             Block.createCuboidShape(0.0, 8.0, 0.0, 16.0, 16.0, 16.0)
     );
+    public static BooleanProperty WATERLOGGED;
 
     public vine_plant(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
+        this.setDefaultState(
+                this.stateManager.getDefaultState()
+                    .with(AGE, 0)
+                    .with(WATERLOGGED, false)
+        );
     }
 
-
+    protected FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED)
+                ? Fluids.WATER.getStill(false)
+                : super.getFluidState(state);
+    }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -50,6 +59,7 @@ public class vine_plant extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
+        builder.add(WATERLOGGED);
     }
 
     @Override
@@ -81,18 +91,13 @@ public class vine_plant extends Block {
         }
     }
 
-    @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
-                                                WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        // Check if the block ABOVE changed
-        if (direction == Direction.UP) {
-            // If the block above is NOT your required support block → break
-            if (!world.getBlockState(pos.up()).isOf(ModBlocks.VINE_PLANT_LEAVES)) {
-                return Blocks.AIR.getDefaultState(); // block self-destructs
-            }
+    protected BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState,
+                                                   WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (state.get(WATERLOGGED)) {
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return state;
     }
 
     @Override
@@ -110,6 +115,17 @@ public class vine_plant extends Block {
                     drop);
             world.spawnEntity(entity);
         }
+    }    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+
+        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+
+        return this.getDefaultState()
+                .with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER); // Waterlog if underwater
+    }
+
+    static {
+        WATERLOGGED = Properties.WATERLOGGED;
     }
 
 }

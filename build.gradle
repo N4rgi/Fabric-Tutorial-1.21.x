@@ -18,6 +18,8 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+    mavenCentral()
+    maven { url = "https://maven.fabricmc.net/" }
 }
 
 fabricApi {

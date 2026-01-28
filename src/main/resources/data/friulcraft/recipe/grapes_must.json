@@ -1,0 +1,9 @@
+{
+  "type": "friulcraft:fermentation_barrel",
+  "ingredient": {
+    "item": "friulcraft:grapes_must"
+  },
+  "result": {
+    "id": "minecraft:bowl"
+  }
+}

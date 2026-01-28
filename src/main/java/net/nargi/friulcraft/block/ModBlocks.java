@@ -1,5 +1,8 @@
 package net.nargi.friulcraft.block;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.client.render.RenderLayer;
@@ -66,5 +69,16 @@ public class ModBlocks {
         });
 
 
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void registerRenderLayers() {
+        BlockRenderLayerMap.INSTANCE.putBlock(
+                VINE_PLANT,
+                RenderLayer.getCutout()
+        );
+    }
+
+    public static void registerModBlocks() {
     }
 }

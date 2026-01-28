@@ -30,6 +30,8 @@ public class FriulCraftModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
 
+        ModBlocks.registerRenderLayers();
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.VINE_PLANT_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.VINE_PLANT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.VINE_PLANT_SAPLING, RenderLayer.getCutout());

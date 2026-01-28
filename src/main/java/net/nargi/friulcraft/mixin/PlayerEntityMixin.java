@@ -2,17 +2,22 @@ package net.nargi.friulcraft.mixin;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.nargi.friulcraft.effect.ModEffects;
+import net.nargi.friulcraft.util.ICustomIntDrunkLvl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
+public abstract class PlayerEntityMixin implements ICustomIntDrunkLvl {
 
     @Inject(
             method = "canConsume",
@@ -23,7 +28,7 @@ public abstract class PlayerEntityMixin {
             boolean ignoreHunger,
             CallbackInfoReturnable<Boolean> cir
     ) {
-        PlayerEntity player = (PlayerEntity)(Object)this;
+        PlayerEntity player = (PlayerEntity) (Object) this;
 
         // Allow eating if player has Umami
         if (player.hasStatusEffect(ModEffects.UMAMI)) {
@@ -38,7 +43,7 @@ public abstract class PlayerEntityMixin {
     private void friulcraft$healFromFood(
             World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<ItemStack> cir
     ) {
-        PlayerEntity player = (PlayerEntity)(Object)this;
+        PlayerEntity player = (PlayerEntity) (Object) this;
 
         if (world.isClient()) return;
         if (!player.hasStatusEffect(ModEffects.UMAMI)) return;
@@ -50,5 +55,42 @@ public abstract class PlayerEntityMixin {
         float healAmount = food.nutrition() * 0.5F;
 
         player.heal(healAmount);
+    }
+
+    // --- Declare custom tracked data ---
+    private static final TrackedData<Integer> CUSTOM_INT = DataTracker.registerData(
+            PlayerEntity.class,
+            TrackedDataHandlerRegistry.INTEGER
+    );
+
+    // --- Inject into initDataTracker to register it ---
+    @Inject(method = "initDataTracker", at = @At("RETURN"))
+    private void addCustomDataTracker(DataTracker.Builder builder, CallbackInfo ci) {
+        builder.add(CUSTOM_INT, 0); // Default value = 0
+    }
+
+    // --- Getter and setter using getDataTracker() ---
+    @Override
+    public int getCustomInt() {
+        return ((PlayerEntity) (Object) this).getDataTracker().get(CUSTOM_INT);
+    }
+
+    @Override
+    public void setCustomInt(int value) {
+        ((PlayerEntity) (Object) this).getDataTracker().set(CUSTOM_INT, value);
+    }
+
+    @Inject(
+            method = "wakeUp",
+            at = @At("TAIL")
+    )
+    private void friulcraft$resetDrunkLevelOnWakeUp(CallbackInfo ci) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+
+        if (!player.getWorld().isClient()) {
+            this.setCustomInt(0);
+            player.removeStatusEffect(ModEffects.DRUNK);
+            player.removeStatusEffect(ModEffects.UMAMI);
+        }
     }
 }
