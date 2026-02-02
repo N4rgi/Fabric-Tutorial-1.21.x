@@ -80,7 +80,11 @@ public class fermentation_barrel extends BlockWithEntity implements BlockEntityP
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
                                              PlayerEntity player, Hand hand, BlockHitResult hit) {
+
+        float pitch = 0.9F + world.random.nextFloat() * 0.2F;
+
         if (!world.isClient) {
+            world.playSound( null, player.getBlockPos(), SoundEvents.BLOCK_BARREL_OPEN, SoundCategory.BLOCKS, 1.0f, pitch);
             NamedScreenHandlerFactory screenHandlerFactory = ((fermentation_barrel_entity) world.getBlockEntity(pos));
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);

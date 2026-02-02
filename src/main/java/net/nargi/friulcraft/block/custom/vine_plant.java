@@ -8,6 +8,9 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -23,6 +26,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.nargi.friulcraft.item.ModItems;
+import net.nargi.friulcraft.sound.ModSounds;
 
 public class vine_plant extends Block implements Waterloggable {
     public static final IntProperty AGE = IntProperty.of("age", 0, 2);
@@ -70,7 +74,9 @@ public class vine_plant extends Block implements Waterloggable {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         int age = state.get(AGE);
+        float pitch = 0.9F + world.random.nextFloat() * 0.2F;
         if (!world.isClient && age == 2) {
+            world.playSound( null, player.getBlockPos(), SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0f, pitch);
             int i = 1 + world.getRandom().nextInt(2);
             ItemStack drop = new ItemStack(ModItems.GRAPES, i);
             ItemEntity entity = new ItemEntity(world,
@@ -80,7 +86,7 @@ public class vine_plant extends Block implements Waterloggable {
             world.setBlockState(pos, state.with(AGE, 0), Block.NOTIFY_LISTENERS);
             return ActionResult.SUCCESS;
         }
-        return ActionResult.PASS;
+        return ActionResult.FAIL;
     }
 
     @Override

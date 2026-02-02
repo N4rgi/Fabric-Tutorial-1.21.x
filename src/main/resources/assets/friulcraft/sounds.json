@@ -1,0 +1,20 @@
+{
+  "grapes_pick": {
+    "subtitles": "sounds.friulcraft.grapes_pick",
+    "sounds": [
+      "friulcraft:grapes_pick"
+    ]
+  },
+  "full_barrel": {
+    "subtitles": "sounds.friulcraft.full_barrel",
+    "sounds": [
+      "friulcraft:full_barrel"
+    ]
+  },
+  "bottle_barrel": {
+    "subtitles": "sounds.friulcraft.bottle_barrel",
+    "sounds": [
+      "friulcraft:bottle_barrel"
+    ]
+  }
+}

@@ -28,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.nargi.friulcraft.block.ModBlocks;
 import net.nargi.friulcraft.item.ModItems;
+import net.nargi.friulcraft.sound.ModSounds;
 
 public class vine_plant_leaves extends Block implements Waterloggable {
     public static final IntProperty AGE = IntProperty.of("age", 0, 2);
@@ -120,10 +121,12 @@ public class vine_plant_leaves extends Block implements Waterloggable {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 
         int age = state.get(AGE);
+        float pitch = 0.9F + world.random.nextFloat() * 0.2F;
         ItemStack heldItem = player.getMainHandStack();
 
         //Drop Grapes
         if (!world.isClient && age == 2) {
+            world.playSound( null, player.getBlockPos(), ModSounds.GRAPES_PICK, SoundCategory.BLOCKS, 1.0f, pitch);
             int i = 1 + world.getRandom().nextInt(2);
 
             ItemStack drop = new ItemStack(ModItems.GRAPES, i);
@@ -153,7 +156,7 @@ public class vine_plant_leaves extends Block implements Waterloggable {
                 return ActionResult.SUCCESS;
             }
         }
-        return ActionResult.PASS;
+        return ActionResult.FAIL;
     }
 
     @Override

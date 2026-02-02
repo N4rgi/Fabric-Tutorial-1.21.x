@@ -19,6 +19,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -31,6 +33,7 @@ import net.nargi.friulcraft.recipe.FermentationBarrelRecipes;
 import net.nargi.friulcraft.recipe.FermentationBarrelRecipesInput;
 import net.nargi.friulcraft.recipe.ModRecipes;
 import net.nargi.friulcraft.screen.custom.fermentation_barrel_screen_handler;
+import net.nargi.friulcraft.sound.ModSounds;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -42,6 +45,7 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
     private static final int INPUT_SLOT = 1;
     private static final int OUTPUT_SLOT = 2;
     private ItemStack lastInput = ItemStack.EMPTY;
+    private boolean wasFull = false;
 
 
     protected final PropertyDelegate propertyDelegate;
@@ -145,18 +149,24 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
         this.setStack(OUTPUT_SLOT, new ItemStack(
                 output.getItem(),
                 this.getStack(OUTPUT_SLOT).getCount() + output.getCount()
+
         ));
 
+
         BlockState state = this.getCachedState();
+        float pitch = 0.9F + world.random.nextFloat() * 0.2F;
+
 
         if (state.contains(fermentation_barrel.GRAPES_PROGRESS)) {
             int currentProgress = state.get(fermentation_barrel.GRAPES_PROGRESS);
 
             if (inputStack.isOf(ModItems.GRAPES_MUST)) {
+
                 int newProgress = Math.min(currentProgress + 1, 8);
                 this.world.setBlockState(this.pos,
                         state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress),
                         Block.NOTIFY_ALL);
+                world.playSound( null, pos, ModSounds.FULL_BARREL, SoundCategory.BLOCKS, 1.0f, pitch);
             }
 
             if (inputStack.isOf(ModItems.EMPTY_WINE_BOTTLE)) {
@@ -164,6 +174,7 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
                 this.world.setBlockState(this.pos,
                         state.with(fermentation_barrel.GRAPES_PROGRESS, newProgress),
                         Block.NOTIFY_ALL);
+                world.playSound( null, pos, ModSounds.BOTTLE_BARREL, SoundCategory.BLOCKS, 1.0f, pitch);
             }
         }
     }

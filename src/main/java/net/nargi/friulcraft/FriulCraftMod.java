@@ -20,6 +20,7 @@ import net.nargi.friulcraft.item.ModItemsGroups;
 import net.nargi.friulcraft.particle.ModParticles;
 import net.nargi.friulcraft.recipe.ModRecipes;
 import net.nargi.friulcraft.screen.ModScreenHandlers;
+import net.nargi.friulcraft.sound.ModSounds;
 import net.nargi.friulcraft.villager.ModVillagers;
 import net.nargi.friulcraft.world.gen.ModWorldGeneration;
 import org.slf4j.Logger;
@@ -34,6 +35,8 @@ public class FriulCraftMod implements ModInitializer {
         ModItems.registerModItems();
         ModWorldGeneration.generateModWorldGen();
         ModBlocks.registerModBlocks();
+
+        ModSounds.registeringSounds();
 
         ModVillagers.registerVillagers();
 

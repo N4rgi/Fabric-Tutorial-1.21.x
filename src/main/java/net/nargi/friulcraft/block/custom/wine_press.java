@@ -8,6 +8,8 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
@@ -70,8 +72,10 @@ public class wine_press extends Block {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         int i = state.get(LEVEL);
+        float pitch = 0.9F + world.random.nextFloat() * 0.2F;
         ItemStack heldItem = player.getMainHandStack();
         if (heldItem.isOf(ModItems.GRAPES) && i < 5) {
+            world.playSound( null, pos, SoundEvents.BLOCK_COMPOSTER_FILL, SoundCategory.BLOCKS, 0.8f, pitch);
             if (!player.isCreative()) {
                 heldItem.decrement(1);
             }
@@ -81,12 +85,15 @@ public class wine_press extends Block {
         }
 
         if (i == 5 && heldItem.isOf(Items.BOWL)) {
+            world.playSound( null, pos, SoundEvents.BLOCK_COMPOSTER_READY, SoundCategory.BLOCKS, 0.8f, pitch);
             ItemStack drop = new ItemStack(ModItems.GRAPES_MUST, 1);
             ItemEntity entity = new ItemEntity(world,
                     pos.getX() + 0.5, pos.getY() + 0.3, pos.getZ() + 0.5,
                     drop);
             world.spawnEntity(entity);
-            heldItem.decrement(1);
+            if (!player.isCreative()) {
+                heldItem.decrement(1);
+            }
             world.setBlockState(pos, state.with(LEVEL, 0), Block.NOTIFY_ALL);
 
             return ActionResult.SUCCESS;

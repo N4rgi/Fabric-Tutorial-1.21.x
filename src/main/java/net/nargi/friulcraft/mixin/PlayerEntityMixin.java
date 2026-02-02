@@ -93,4 +93,31 @@ public abstract class PlayerEntityMixin implements ICustomIntDrunkLvl {
             player.removeStatusEffect(ModEffects.UMAMI);
         }
     }
+
+    @Inject(
+            method = "tick",
+            at = @At("TAIL")
+    )
+    private void friulcraft$drunkTick(CallbackInfo ci) {
+        PlayerEntity player = (PlayerEntity) (Object) this;
+
+        if (player.getWorld().isClient()) return;
+
+        // Half a Minecraft day
+        final int INTERVAL = 3000;
+
+        // Only run once per interval
+        if (player.getWorld().getTime() % INTERVAL != 0) return;
+
+        int drunk = this.getCustomInt();
+
+        if (drunk > 0) {
+            this.setCustomInt(drunk - 1);
+        }
+
+        // Optional: auto-remove effect when sober
+        if (this.getCustomInt() == 0) {
+            player.removeStatusEffect(ModEffects.DRUNK);
+        }
+    }
 }
