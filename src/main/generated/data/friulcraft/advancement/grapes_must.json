@@ -1,0 +1,36 @@
+{
+  "parent": "friulcraft:root",
+  "criteria": {
+    "grapes_must": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:stupid_item_for_advancements"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.must_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:grapes_must"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.must"
+    }
+  },
+  "requirements": [
+    [
+      "grapes_must"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

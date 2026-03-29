@@ -1,0 +1,33 @@
+{
+  "criteria": {
+    "root": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:grapes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "friulcraft:textures/gui/advancements/backgrounds/friulcraft.png",
+    "description": {
+      "translate": "friulcraft.advancements.root_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:grapes"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.root"
+    }
+  },
+  "requirements": [
+    [
+      "root"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

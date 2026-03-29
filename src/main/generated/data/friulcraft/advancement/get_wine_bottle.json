@@ -1,0 +1,36 @@
+{
+  "parent": "friulcraft:get_fermentation_table",
+  "criteria": {
+    "get_wine_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:wine_bottle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.wine_bottle_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:wine_bottle"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.wine_bottle"
+    }
+  },
+  "requirements": [
+    [
+      "get_wine_bottle"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

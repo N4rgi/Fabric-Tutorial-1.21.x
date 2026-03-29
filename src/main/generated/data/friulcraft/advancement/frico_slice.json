@@ -1,0 +1,36 @@
+{
+  "parent": "friulcraft:frico",
+  "criteria": {
+    "frico_slice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:spruce_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.frico_slice_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:frico_slice"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.frico_slice"
+    }
+  },
+  "requirements": [
+    [
+      "frico_slice"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,39 @@
+{
+  "parent": "friulcraft:root",
+  "criteria": {
+    "get_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:vine_plant_leaves"
+          },
+          {
+            "items": "friulcraft:vine_plant"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.vineyards_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:vine_plant"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.vineyards"
+    }
+  },
+  "requirements": [
+    [
+      "get_leaves"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

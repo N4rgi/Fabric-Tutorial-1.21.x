@@ -45,7 +45,6 @@ public class fermentation_barrel_entity extends BlockEntity implements Implement
     private static final int INPUT_SLOT = 1;
     private static final int OUTPUT_SLOT = 2;
     private ItemStack lastInput = ItemStack.EMPTY;
-    private boolean wasFull = false;
 
 
     protected final PropertyDelegate propertyDelegate;

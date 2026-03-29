@@ -3,16 +3,16 @@
 	"id": "friulcraft",
 	"version": "${version}",
 	"name": "Friul Craft",
-	"description": "Friul Craft Nargi",
+	"description": "Friul Craft... Frico, Vin e Vignâls",
 	"authors": [
-		"Me!"
+		"Nargi"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
+		"homepage": "https://modrinth.com/mod/friul-craft",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/tutorialmod/icon.png",
+	"icon": "assets/friulcraft/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

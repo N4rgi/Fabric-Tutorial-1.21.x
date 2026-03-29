@@ -1,0 +1,54 @@
+{
+  //ITEMS
+  "item.friulcraft.grapes": "Uva",
+  "item.friulcraft.grapes_must": "Mosto d'Uva",
+  "item.friulcraft.etiquette": "Etichetta",
+  "item.friulcraft.frico_slice": "Fetta di Frico",
+  "item.friulcraft.empty_wine_glass": "Bicchiere di Vino Vuoto",
+  "item.friulcraft.empty_wine_bottle": "Bottiglia di Vino Vuota",
+  "item.friulcraft.wine_glass": "Bicchiere di Vino",
+  "item.friulcraft.wine_bottle": "Bottiglia di Vino",
+
+  //BLOCKS
+  "block.friulcraft.vine_plant_sapling": "Arboscello di vite",
+  "block.friulcraft.vine_plant_leaves": "Foglie di vite",
+  "block.friulcraft.vine_plant": "Vite",
+  "block.friulcraft.fermentation_barrel": "Botte",
+  "block.friulcraft.wine_press": "Torchio",
+  "block.friulcraft.frico": "Frico",
+
+  //OTHER
+  "entity.minecraft.villager.friulcraft.winemaker": "Enologo",
+
+  "itemgroup.friulcraft.itemgroup": "Friulcraft",
+
+  "painting.friulcraft.vineyards.title": "Vigneti",
+  "painting.friulcraft.vineyards.author": "Nargi",
+  "painting.friulcraft.frico.title": "Frico",
+  "painting.friulcraft.frico.author": "Nargi",
+
+  "name.friulcraft.name": "Nome: ",
+  "description.friulcraft.description": "Descrizione: ",
+
+  //ADVANCEMENTS NAMES
+  "friulcraft.advancements.root": "Frico, Vino e Vigneti",
+  "friulcraft.advancements.vineyards": "Vigneti Fatti in Casa",
+  "friulcraft.advancements.frico": "Patate Latte e Formaggio... circa",
+  "friulcraft.advancements.frico_slice": "Qualche Fetta",
+  "friulcraft.advancements.must": "Non ancora Pronto",
+  "friulcraft.advancements.barrel": "Lascialo Invecchiare",
+  "friulcraft.advancements.wine_bottle": "Da Stappare",
+  "friulcraft.advancements.pour": "Fai un bel Brindisi",
+  "friulcraft.advancements.drunk": "Pieno Come una Botte",
+
+  //ADVANCEMENTS DESCRIPTIONS
+  "friulcraft.advancements.root_description": "Raccogli dell'uva",
+  "friulcraft.advancements.vineyards_description": "Crea il tuo vigneto",
+  "friulcraft.advancements.frico_description": "Non c'era il FORMAGGIO !!!",
+  "friulcraft.advancements.frico_slice_description": "Tagli il frico a fette",
+  "friulcraft.advancements.must_description": "Usa un torchio",
+  "friulcraft.advancements.barrel_description": "Crea un botte",
+  "friulcraft.advancements.wine_bottle_description": "Ora puoi bere",
+  "friulcraft.advancements.pour_description": "Versa il Vino a un altro Giocatore",
+  "friulcraft.advancements.drunk_description": "Bevi un po’... troppo..."
+}

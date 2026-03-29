@@ -14,6 +14,7 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
@@ -66,6 +67,15 @@ public class WineBottle extends Item {
                             1800,
                             0
                     ));
+
+                    if (player instanceof net.minecraft.server.network.ServerPlayerEntity serverPlayer) {
+                        var adv = serverPlayer.server.getAdvancementLoader()
+                                .get(Identifier.of("friulcraft", "get_drunk"));
+
+                        if (adv != null) {
+                            serverPlayer.getAdvancementTracker().grantCriterion(adv, "get_drunk");
+                        }
+                    }
                     player.addStatusEffect(new StatusEffectInstance(
                             StatusEffects.NAUSEA,
                             200,
@@ -118,7 +128,7 @@ public class WineBottle extends Item {
         if (wineDescription == null) wineDescription = "";
 
         // "Wine" in purple
-        Text wineLabel = Text.literal("Wine: ")
+        Text wineLabel = Text.translatable("name.friulcraft.name")
                 .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x843C7D)));
 
         // Value in default white
@@ -128,7 +138,7 @@ public class WineBottle extends Item {
         tooltip.add(Text.empty().append(wineLabel).append(wineValue));
 
         // "Description" in dark green
-        Text descLabel = Text.literal("Description: ")
+        Text descLabel = Text.translatable("description.friulcraft.description")
                 .setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x2E8B57)));
 
         // Value in default white

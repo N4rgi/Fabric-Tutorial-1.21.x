@@ -48,6 +48,7 @@ public class FriulCraftModClient implements ClientModInitializer {
 
             if (hasEffect && !shaderActive) {
                 loadShader(client);
+
             } else if (!hasEffect && shaderActive) {
                 unloadShader();
             }

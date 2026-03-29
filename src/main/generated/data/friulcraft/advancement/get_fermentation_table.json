@@ -1,0 +1,36 @@
+{
+  "parent": "friulcraft:grapes_must",
+  "criteria": {
+    "get_fermentation_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:fermentation_barrel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.barrel_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:fermentation_barrel"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.barrel"
+    }
+  },
+  "requirements": [
+    [
+      "get_fermentation_table"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

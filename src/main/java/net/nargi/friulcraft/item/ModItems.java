@@ -12,6 +12,7 @@ import net.nargi.friulcraft.item.custom.*;
 
 public class ModItems {
 
+
     public static final Item GRAPES = registerItem("grapes",
             new Item(new Item.Settings().food(ModFoodComponents.GRAPES)));
 
@@ -37,6 +38,11 @@ public class ModItems {
 
     public static final Item WINE_BOTTLE = registerItem("wine_bottle",
             new WineBottle(new Item.Settings().maxCount(1).food(ModFoodComponents.GLASS_CUP)));
+
+
+
+    public static final Item STUPID_ITEM_FOR_ADVANCEMENTS = registerItem("stupid_item_for_advancements",
+            new Item(new Item.Settings()));
 
 
 

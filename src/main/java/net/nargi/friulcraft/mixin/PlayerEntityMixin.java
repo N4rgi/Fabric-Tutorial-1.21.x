@@ -2,13 +2,22 @@ package net.nargi.friulcraft.mixin;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.nargi.friulcraft.effect.ModEffects;
+import net.nargi.friulcraft.item.ModItems;
 import net.nargi.friulcraft.util.ICustomIntDrunkLvl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -120,4 +129,89 @@ public abstract class PlayerEntityMixin implements ICustomIntDrunkLvl {
             player.removeStatusEffect(ModEffects.DRUNK);
         }
     }
+
+    @Inject(
+            method = "interact(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    private void onInteractEntity(Entity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        PlayerEntity self = (PlayerEntity) (Object) this;
+
+        // Server-side only
+        if (self.getWorld().isClient()) return;
+
+        // Only main hand interactions
+        if (hand != Hand.MAIN_HAND) return;
+
+        // Must click another player
+        if (!(entity instanceof PlayerEntity target)) return;
+
+        ItemStack selfStack = self.getMainHandStack();
+        ItemStack targetStack = target.getMainHandStack();
+
+        // Required items
+        if (!selfStack.isOf(ModItems.WINE_BOTTLE)) return;
+        if (!targetStack.isOf(ModItems.EMPTY_WINE_GLASS)) return;
+
+        // Remove 1 empty glass
+        targetStack.decrement(1);
+
+        // Give 1 filled wine glass
+        ItemStack filledGlass = new ItemStack(ModItems.WINE_GLASS);
+
+        // If their hand is now empty, put it in hand
+        if (targetStack.isEmpty()) {
+            target.setStackInHand(Hand.MAIN_HAND, filledGlass);
+        } else {
+            // Otherwise try to insert into inventory
+            if (!target.getInventory().insertStack(filledGlass)) {
+                target.dropItem(filledGlass, false);
+            }
+        }
+
+        self.getWorld().playSound(
+                null,
+                self.getBlockPos(),
+                SoundEvents.ITEM_BOTTLE_EMPTY,
+                SoundCategory.PLAYERS,
+                1.0f,
+                1.0f
+        );
+
+        if (self instanceof net.minecraft.server.network.ServerPlayerEntity serverPlayer) {
+            var adv = serverPlayer.server.getAdvancementLoader()
+                    .get(Identifier.of("friulcraft", "pour_wine"));
+
+            if (adv != null) {
+                serverPlayer.getAdvancementTracker().grantCriterion(adv, "pour_wine");
+            }
+        }
+
+        if (!self.getAbilities().creativeMode) {
+            if (selfStack.getDamage() + 1 >= selfStack.getMaxDamage()) {
+                self.setStackInHand(Hand.MAIN_HAND, new ItemStack(ModItems.EMPTY_WINE_BOTTLE));
+            } else {
+
+                // Otherwise damage normally (server-safe)
+                if (self.getWorld() instanceof net.minecraft.server.world.ServerWorld serverWorld
+                        && self instanceof net.minecraft.server.network.ServerPlayerEntity serverPlayer) {
+                    selfStack.damage(
+                            1,
+                            serverWorld,
+                            serverPlayer,
+                            item -> {}
+                    );
+                }
+            }
+        }
+
+        // Sync inventories
+        target.playerScreenHandler.sendContentUpdates();
+        self.playerScreenHandler.sendContentUpdates();
+
+        cir.setReturnValue(ActionResult.SUCCESS);
+
+    }
+
 }

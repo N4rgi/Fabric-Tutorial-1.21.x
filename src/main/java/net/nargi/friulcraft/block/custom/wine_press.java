@@ -13,6 +13,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -81,6 +82,16 @@ public class wine_press extends Block {
             }
 
             world.setBlockState(pos, state.with(LEVEL, i + 1), Block.NOTIFY_ALL);
+
+            if (player instanceof net.minecraft.server.network.ServerPlayerEntity serverPlayer) {
+                var adv = serverPlayer.server.getAdvancementLoader()
+                        .get(Identifier.of("friulcraft", "grapes_must"));
+
+                if (adv != null) {
+                    serverPlayer.getAdvancementTracker().grantCriterion(adv, "grapes_must");
+                }
+            }
+
             return ActionResult.SUCCESS;
         }
 

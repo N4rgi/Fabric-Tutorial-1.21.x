@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -67,6 +68,15 @@ public class frico extends Block {
 
         if (!world.isClient && i == 3) {
             world.removeBlock(pos, false);
+        }
+
+        if (player instanceof net.minecraft.server.network.ServerPlayerEntity serverPlayer) {
+            var adv = serverPlayer.server.getAdvancementLoader()
+                    .get(Identifier.of("friulcraft", "frico_slice"));
+
+            if (adv != null) {
+                serverPlayer.getAdvancementTracker().grantCriterion(adv, "frico_slice");
+            }
         }
 
         return ActionResult.SUCCESS;

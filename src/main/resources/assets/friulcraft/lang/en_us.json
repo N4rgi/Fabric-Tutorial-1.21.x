@@ -1,18 +1,54 @@
 {
+  //ITEMS
   "item.friulcraft.grapes": "Grapes",
-  "item.friulcraft.grape_seeds": "Grape seeds",
-  "item.friulcraft.wine_bottle": "Wine Bottle",
+  "item.friulcraft.grapes_must": "Grapes Must",
   "item.friulcraft.etiquette": "Etiquette",
+  "item.friulcraft.frico_slice": "Frico slice",
+  "item.friulcraft.empty_wine_glass": "Empty Wine Glass",
+  "item.friulcraft.empty_wine_bottle": "Empty Wine Bottle",
+  "item.friulcraft.wine_glass": "Wine Glass",
+  "item.friulcraft.wine_bottle": "Wine Bottle",
 
-
+  //BLOCKS
   "block.friulcraft.vine_plant_sapling": "Vine Plant Sapling",
   "block.friulcraft.vine_plant_leaves": "Vine Plant Leaves",
   "block.friulcraft.vine_plant": "Grape Vines",
+  "block.friulcraft.fermentation_barrel": "Fermentation Barrel",
+  "block.friulcraft.wine_press": "Wine press",
+  "block.friulcraft.frico": "Frico",
 
+  //OTHER
   "entity.minecraft.villager.friulcraft.winemaker": "Winemaker",
 
-  "tooltip.friulcraft.wine_bottle_name.tooltip": "Merlot Wine",
-  "tooltip.friulcraft.wine_bottle_description.tooltip": "Description for this tasty wine bottle",
+  "itemgroup.friulcraft.itemgroup": "Friulcraft",
 
-  "itemgroup.friulcraft.itemgroup": "Friulcraft"
+  "painting.friulcraft.vineyards.title": "Vineyards",
+  "painting.friulcraft.vineyards.author": "Nargi",
+  "painting.friulcraft.frico.title": "Frico",
+  "painting.friulcraft.frico.author": "Nargi",
+
+  "name.friulcraft.name": "Name: ",
+  "description.friulcraft.description": "Description: ",
+
+  //ADVANCEMENTS NAMES
+  "friulcraft.advancements.root": "Frico, Wine and Vineyards",
+  "friulcraft.advancements.vineyards": "Homemade Vineyards",
+  "friulcraft.advancements.frico": "Potatoes, Milk and Cheese... more or less",
+  "friulcraft.advancements.frico_slice": "A Few Slices",
+  "friulcraft.advancements.must": "Not Ready Yet",
+  "friulcraft.advancements.barrel": "Let It Age",
+  "friulcraft.advancements.wine_bottle": "Ready to Uncork",
+  "friulcraft.advancements.pour": "Give a Toast",
+  "friulcraft.advancements.drunk": "Definitely Drunk",
+
+  //ADVANCEMENTS DESCRIPTIONS
+  "friulcraft.advancements.root_description": "Pick up Some Grapes",
+  "friulcraft.advancements.vineyards_description": "Make Your Own Vineyard",
+  "friulcraft.advancements.frico_description": "There's NO CHEESE...",
+  "friulcraft.advancements.frico_slice_description": "Cut a Frico in Slices",
+  "friulcraft.advancements.must_description": "Use a Wine Press",
+  "friulcraft.advancements.barrel_description": "Craft a Fermentation Barrel",
+  "friulcraft.advancements.wine_bottle_description": "Now You can Drink",
+  "friulcraft.advancements.pour_description": "Pour Wine to another Player",
+  "friulcraft.advancements.drunk_description": "Drink too... much.."
 }

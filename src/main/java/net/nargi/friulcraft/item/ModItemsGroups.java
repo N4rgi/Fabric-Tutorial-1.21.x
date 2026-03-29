@@ -12,9 +12,9 @@ import net.nargi.friulcraft.block.ModBlocks;
 
 public class ModItemsGroups {
 
-    public static final ItemGroup PINK_GARNET_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup FRIULCRAFT_ITEMS_GROUP = Registry.register(Registries.ITEM_GROUP,
             Identifier.of(FriulCraftMod.MOD_ID, "friulcraft_items"),
-            FabricItemGroup.builder().icon(() -> new ItemStack(ModItems.WINE_GLASS))
+            FabricItemGroup.builder().icon(() -> new ItemStack(ModBlocks.FERMENTATION_BARREL))
                     .displayName(Text.translatable("itemgroup.friulcraft.itemgroup"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.GRAPES);

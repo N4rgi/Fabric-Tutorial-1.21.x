@@ -1,0 +1,17 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "one",
+    "dstrgb": "zero"
+  },
+  "vertex": "blit",
+  "fragment": "friulcraft:blink",
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "BlinkProgress", "type": "float", "count": 1 },
+    { "name": "InSize", "type": "float", "count": 2 },
+    { "name": "OutSize", "type": "float", "count": 2 }
+  ]
+}

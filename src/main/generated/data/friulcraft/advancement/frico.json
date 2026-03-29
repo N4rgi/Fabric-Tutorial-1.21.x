@@ -1,0 +1,36 @@
+{
+  "parent": "friulcraft:root",
+  "criteria": {
+    "frico": {
+      "conditions": {
+        "items": [
+          {
+            "items": "friulcraft:frico"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "friulcraft.advancements.frico_description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "friulcraft:frico"
+    },
+    "title": {
+      "translate": "friulcraft.advancements.frico"
+    }
+  },
+  "requirements": [
+    [
+      "frico"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

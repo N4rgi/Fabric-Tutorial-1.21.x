@@ -1,0 +1,54 @@
+{
+  //ITEMS
+  "item.friulcraft.grapes": "Ue",
+  "item.friulcraft.grapes_must": "Most di Ue",
+  "item.friulcraft.etiquette": "Etichete",
+  "item.friulcraft.frico_slice": "Fete di Frico",
+  "item.friulcraft.empty_wine_glass": "Tai Vueit",
+  "item.friulcraft.empty_wine_bottle": "Butilie di Vin Vueide",
+  "item.friulcraft.wine_glass": "Tai",
+  "item.friulcraft.wine_bottle": "Butilie di Vin",
+
+  //BLOCKS
+  "block.friulcraft.vine_plant_sapling": "Arbossit di Vît",
+  "block.friulcraft.vine_plant_leaves": "Fueis di Vît",
+  "block.friulcraft.vine_plant": "Vît",
+  "block.friulcraft.fermentation_barrel": "Bote",
+  "block.friulcraft.wine_press": "Turcladôr",
+  "block.friulcraft.frico": "Frico",
+
+  //OTHER
+  "entity.minecraft.villager.friulcraft.winemaker": "Enolic",
+
+  "itemgroup.friulcraft.itemgroup": "Friûlcraft",
+
+  "painting.friulcraft.vineyards.title": "Vignâls",
+  "painting.friulcraft.vineyards.author": "Nargi",
+  "painting.friulcraft.frico.title": "Frico",
+  "painting.friulcraft.frico.author": "Nargi",
+
+  "name.friulcraft.name": "Non: ",
+  "description.friulcraft.description": "Descrizion: ",
+
+  //ADVANCEMENTS NAMES
+  "friulcraft.advancements.root": "Frico, Vin e Vignâls",
+  "friulcraft.advancements.vineyards": "Vignâls fâts in cjase",
+  "friulcraft.advancements.frico": "Patacis, Lat e Formadi... plui o mancul",
+  "friulcraft.advancements.frico_slice": "Cualchi Fete",
+  "friulcraft.advancements.must": "No je ancjemò pront",
+  "friulcraft.advancements.barrel": "Lassilu invecjâ",
+  "friulcraft.advancements.wine_bottle": "Pront par stappâ",
+  "friulcraft.advancements.pour": "Scaravente un taj",
+  "friulcraft.advancements.drunk": "Plen come une bote",
+
+  //ADVANCEMENTS DESCRIPTIONS
+  "friulcraft.advancements.root_description": "Cjape sù cualchi ue",
+  "friulcraft.advancements.vineyards_description": "Fâs il to vignâl",
+  "friulcraft.advancements.frico_description": "Nol jere il FORMADI !!!",
+  "friulcraft.advancements.frico_slice_description": "Taiâ un frico in fetis",
+  "friulcraft.advancements.must_description": "Dopre il turcladôr",
+  "friulcraft.advancements.barrel_description": "Fâs une bote",
+  "friulcraft.advancements.wine_bottle_description": "Cumò tu puedis bevi",
+  "friulcraft.advancements.pour_description": "Verse vin a un altri zuiadôr",
+  "friulcraft.advancements.drunk_description": "Bêf un tic... masse..."
+}
